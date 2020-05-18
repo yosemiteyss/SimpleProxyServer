@@ -4,9 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class BlockManager {
 
@@ -26,7 +25,7 @@ public class BlockManager {
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public BlockManager() {
         // Synchronized list accessed by multiple threads
-        blockedHostNames = Collections.synchronizedList(new ArrayList<>());
+        blockedHostNames = new CopyOnWriteArrayList<>();
 
         // Read host names from text file into array list
         try {
@@ -36,6 +35,7 @@ public class BlockManager {
                 blockedFile.createNewFile();
 
             BufferedReader blockHostNamesReader = new BufferedReader(new FileReader(blockedFile));
+
             String hostName;
 
             while ((hostName = blockHostNamesReader.readLine()) != null)

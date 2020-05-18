@@ -1,2 +1,6 @@
 /.idea/
 /out/
+/cache/
+/block.txt
+/cache.txt
+/*.iml

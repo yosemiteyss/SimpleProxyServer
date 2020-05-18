@@ -1,9 +1,8 @@
 package com.yosemiteyss.simpleproxyserver;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class CacheManager {
 
@@ -27,7 +26,7 @@ public class CacheManager {
      */
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public CacheManager() {
-        cacheURLs = Collections.synchronizedList(new ArrayList<>());
+        cacheURLs = new CopyOnWriteArrayList<>();
 
         try {
             File cacheFile = new File(FILENAME);
